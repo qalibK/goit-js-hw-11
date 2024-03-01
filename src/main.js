@@ -1,5 +1,7 @@
 import { appendHitsMarkup, clearHitsContainer } from './js/render-functions';
 import { ImagesApiService, onError } from './js/pixabay-api';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = {
   searchForm: document.querySelector('.js-search-form'),
@@ -20,6 +22,7 @@ function onSearch(e) {
 
   if (imagesApiService.query === '') {
     onError();
+    clearWaitingText();
     clearHitsContainer();
     return;
   }
@@ -30,6 +33,11 @@ function onSearch(e) {
       clearWaitingText();
       clearHitsContainer();
       appendHitsMarkup(hits);
+      new SimpleLightbox('.images a', {
+        captionPosition: 'bottom',
+        captionDelay: 250,
+        captionsData: 'alt',
+      });
     })
     .catch(error => {
       console.log(error);

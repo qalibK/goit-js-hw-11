@@ -1,6 +1,3 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
 const imagesContainer = document.querySelector('.js-images-container');
 
 export function appendHitsMarkup(data) {
@@ -8,8 +5,7 @@ export function appendHitsMarkup(data) {
     .map(
       item =>
         `<li class="gallery-item">
-        <a href="${item.largeImageURL}" target="_blank" rel="noopener noreferrer">
-          <article>
+          <a href="${item.largeImageURL}">
             <img src="${item.webformatURL}" alt="${item.tags}" width="360" height="200"/>
             <div class="text-content-box">
                 <p class="image-text"><span class="image-title">Likes</span> ${item.likes}</p>
@@ -17,7 +13,6 @@ export function appendHitsMarkup(data) {
                 <p class="image-text"><span class="image-title">Comments</span> ${item.comments}</p>
                 <p class="image-text"><span class="image-title">Downloads</span> ${item.downloads}</p>
             </div>
-          </article>
         </a>
       </li>`
     )
@@ -29,4 +24,3 @@ export function appendHitsMarkup(data) {
 export function clearHitsContainer() {
   imagesContainer.innerHTML = '';
 }
-g;
