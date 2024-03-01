@@ -13,7 +13,7 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/.html'),
+        input: glob.sync('./src/*.html'),
         output: {
           assetFileNames: ({ name }) => {
             if (/.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
@@ -36,10 +36,10 @@ export default defineConfig(({ command }) => {
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/.html']),
+      FullReload(['./src/**/**/.html']),
       copy({
         targets: [
-          { src: 'src/img/images/*', dest: 'dist/img/images' },
+          { src: 'src/img', dest: 'dist/img' },
           // Add more targets if you have other asset types
         ],
         verbose: true, // Optional. Logs the copied files
