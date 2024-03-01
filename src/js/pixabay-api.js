@@ -57,7 +57,7 @@ export function onError(error) {
     maxWidth: 432,
     maxHeigth: 88,
     animateInside: true,
-    iconUrl: './assets/image/x-octagon.svg',
+    iconUrl: 'x-octagon.svg',
     transitionIn: 'fadeInRight',
     transitionOut: 'fadeOutRight',
   });
