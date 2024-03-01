@@ -15,6 +15,17 @@ export default defineConfig(({ command }) => {
       rollupOptions: {
         input: glob.sync('./src/*.html'),
         output: {
+          assetFileNames: ({ name }) => {
+            if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
+              return 'assets/images/[name]-[hash][extname]';
+            }
+
+            if (/\.css$/.test(name ?? '')) {
+              return 'assets/css/[name]-[hash][extname]';
+            }
+            return 'assets/[name]-[hash][extname]';
+          },
+
           manualChunks(id) {
             if (id.includes('node_modules')) {
               return 'vendor';
