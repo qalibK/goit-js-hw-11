@@ -33,7 +33,8 @@ function onSearch(e) {
       clearWaitingText();
       clearHitsContainer();
       appendHitsMarkup(hits);
-      new SimpleLightbox('.images a', {
+      const imagesContainer = document.querySelector('.images');
+      const simpleLightbox = new SimpleLightbox('.images a', {
         captionPosition: 'bottom',
         captionDelay: 250,
         captionsData: 'alt',
