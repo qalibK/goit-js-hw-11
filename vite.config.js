@@ -1,8 +1,8 @@
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { defineConfig } from 'vite';
 import glob from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
-import { copy } from 'vite-plugin-copy';
 
 export default defineConfig(({ command }) => {
   return {
@@ -36,10 +36,10 @@ export default defineConfig(({ command }) => {
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/**/.html']),
-      copy({
+      FullReload(['./src/*.html']),
+      viteStaticCopy({
         targets: [
-          { src: 'src/img', dest: 'dist/img' },
+          { src: './img', dest: '../dist' },
           // Add more targets if you have other asset types
         ],
         verbose: true, // Optional. Logs the copied files
