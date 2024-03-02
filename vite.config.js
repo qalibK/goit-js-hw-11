@@ -36,7 +36,7 @@ export default defineConfig(({ command }) => {
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/*.html']),
+      FullReload(['./src/**/**.html']),
       viteStaticCopy({
         targets: [
           { src: './img', dest: '../dist' },
