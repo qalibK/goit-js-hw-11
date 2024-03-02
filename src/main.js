@@ -34,11 +34,7 @@ function onSearch(e) {
       clearHitsContainer();
       appendHitsMarkup(hits);
       const imagesContainer = document.querySelector('.images');
-      const simpleLightbox = new SimpleLightbox('.images a', {
-        captionPosition: 'bottom',
-        captionDelay: 250,
-        captionsData: 'alt',
-      });
+      const simpleLightbox = new SimpleLightbox('.images a');
     })
     .catch(error => {
       console.log(error);
