@@ -6,6 +6,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const refs = {
   searchForm: document.querySelector('.js-search-form'),
   waitingText: document.querySelector('.js-waiting-text'),
+  imagesContainer: document.querySelector('.js-images-container'),
 };
 
 const imagesApiService = new ImagesApiService();
@@ -23,21 +24,20 @@ function onSearch(e) {
   if (imagesApiService.query === '') {
     onError();
     clearWaitingText();
-    clearHitsContainer();
+    clearHitsContainer(refs.imagesContainer);
     return;
   }
 
   imagesApiService
-    .fetchImages(searchQuery)
+    .fetchImages()
     .then(hits => {
       clearWaitingText();
-      clearHitsContainer();
-      appendHitsMarkup(hits);
-      const imagesContainer = document.querySelector('.images');
-      const simpleLightbox = new SimpleLightbox('.images a');
+      clearHitsContainer(refs.imagesContainer);
+      appendHitsMarkup(hits, refs.imagesContainer);
+      initializeSimpleLightbox();
     })
     .catch(error => {
-      console.log(error);
+      onError(error);
     });
 
   refs.searchForm.reset();
@@ -45,4 +45,13 @@ function onSearch(e) {
 
 function clearWaitingText() {
   refs.waitingText.style.display = 'none';
+}
+
+function initializeSimpleLightbox() {
+  const simpleLightbox = new SimpleLightbox('.images a', {
+    captionPosition: 'bottom',
+    captionDelay: 250,
+    captionsData: 'alt',
+  });
+  simpleLightbox.refresh();
 }

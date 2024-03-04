@@ -1,6 +1,4 @@
-const imagesContainer = document.querySelector('.js-images-container');
-
-export function appendHitsMarkup(data) {
+export function appendHitsMarkup(data, container) {
   const markup = data
     .map(
       item =>
@@ -18,9 +16,9 @@ export function appendHitsMarkup(data) {
     )
     .join('');
 
-  imagesContainer.insertAdjacentHTML('beforeend', markup);
+  container.insertAdjacentHTML('beforeend', markup);
 }
 
-export function clearHitsContainer() {
-  imagesContainer.innerHTML = '';
+export function clearHitsContainer(container) {
+  container.innerHTML = '';
 }
